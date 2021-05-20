@@ -59,7 +59,16 @@ export const constantRoutes = [
     component: () => import ('@/views/test'),
     meta: { title: 'Table', icon: 'table' }
   },
-
+  {
+    path: '/about',
+    component: () => import ('@/views/test'),
+    meta: { title: 'Table', icon: 'table' }
+  },
+  {
+    path: '/detail',
+    component: () => import ('@/views/test'),
+    meta: { title: 'Table', icon: 'table' }
+  },
   {
     path: '/example',
     component: Layout,
@@ -154,12 +163,13 @@ export const constantRoutes = [
   },
 
   {
-    path: 'external-link',
+    path: 'external',
     component: Layout,
     children: [
       {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
+        path: 'menu2',
+        component: () => import('@/views/nested/menu2/index'),
+        meta: { title: 'menu2' }
       }
     ]
   },
@@ -169,7 +179,7 @@ export const constantRoutes = [
 ]
 
 const createRouter = () => new Router({
-  // mode: 'history', // require service support
+  mode: 'history', // require service support
   base: '/iframeBox',
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
