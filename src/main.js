@@ -4,7 +4,7 @@ import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import locale from 'element-ui/lib/locale/lang/en' // lang i18n
+// import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 
 import '@/styles/index.scss' // global css
 
@@ -62,12 +62,28 @@ export async function bootstrap() {
   console.log('VueMicroApp bootstraped')
 }
 
+function storeTest(props) {
+  props.onGlobalStateChange &&
+    props.onGlobalStateChange(
+      (value, prev) => console.log(`[onGlobalStateChange - ${props.name}]:`, value, prev),
+      true,
+    )
+  props.setGlobalState &&
+    props.setGlobalState({
+      ignore: props.name,
+      user: {
+        name: props.name
+      }
+    })
+}
+
 /**
  * 应用每次进入都会调用 mount 方法，通常我们在这里触发应用的渲染方法
  */
 export async function mount(props) {
   console.log('VueMicroApp mount', props)
   console.log('微应用加载')
+  storeTest(props)
   render(props)
 }
 
