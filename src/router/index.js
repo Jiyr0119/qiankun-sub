@@ -56,17 +56,17 @@ export const constantRoutes = [
   // },
   {
     path: '/',
-    component: () => import ('@/views/test'),
+    component: () => import('@/views/test'),
     meta: { title: 'Table', icon: 'table' }
   },
   {
     path: '/about',
-    component: () => import ('@/views/test'),
+    component: () => import('@/views/test'),
     meta: { title: 'Table', icon: 'table' }
   },
   {
     path: '/detail',
-    component: () => import ('@/views/test'),
+    component: () => import('@/views/test'),
     meta: { title: 'Table', icon: 'table' }
   },
   {
@@ -134,13 +134,15 @@ export const constantRoutes = [
             children: [
               {
                 path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
+                component: () =>
+                  import('@/views/nested/menu1/menu1-2/menu1-2-1'),
                 name: 'Menu1-2-1',
                 meta: { title: 'Menu1-2-1' }
               },
               {
                 path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
+                component: () =>
+                  import('@/views/nested/menu1/menu1-2/menu1-2-2'),
                 name: 'Menu1-2-2',
                 meta: { title: 'Menu1-2-2' }
               }
@@ -178,12 +180,13 @@ export const constantRoutes = [
   { path: '*', redirect: '/404', hidden: true }
 ]
 
-const createRouter = () => new Router({
-  mode: 'history', // require service support
-  base: '/iframeBox',
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
-})
+const createRouter = () =>
+  new Router({
+    mode: 'history', // require service support
+    base: window.__POWERED_BY_QIANKUN__ ? '/microApp' : '/',
+    scrollBehavior: () => ({ y: 0 }),
+    routes: constantRoutes
+  })
 
 const router = createRouter()
 
